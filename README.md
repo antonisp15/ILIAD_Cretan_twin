@@ -1,5 +1,6 @@
 # SWAN Heraklion CWL
-
+This is a 500m and 50m spatial resolution implementation of SWAN wave model, that requires inputs from already downscaled in-house WRF (3km) resolution. 
+It also requires the CMEMS username and password of the user, inputed as a yaml file with the inputs, along with the number of hindcast and forecast days (integer)
 ## How to use it:
 
 To be able to run this CWL flow you need to have available on your machine:
