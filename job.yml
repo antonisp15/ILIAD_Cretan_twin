@@ -1,8 +1,0 @@
-cmems_username: ihidromod
-cmems_password: 
-wrf_ftpserver: 139.91.194.189
-wrf_username: iliad
-wrf_password: 
-hindcast: 1
-forecast: 3
-timenow: 2024-02-27T11:17:00Z
