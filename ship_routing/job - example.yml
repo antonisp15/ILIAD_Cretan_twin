@@ -1,0 +1,59 @@
+wrf_ftpserver: 139.91.194.189
+wrf_username: iliad
+wrf_password: password
+wrf_remotedir: /iliad
+start_lat: 35.3445
+start_lon: 25.1428
+end_lat: 38.370
+end_lon: 26.142
+vessel_type: motor   #sail or motor
+cmems_username: cmems_username
+cmems_password: cmems_password
+departure_date: 2025-02-05T08:00:00Z
+maxDraught: 2.0
+
+#########  COMMAND TO RUN:
+#cwltool workflow.cwl#run_visir job.yml
+
+
+
+#pireas 37.938 , 23.622
+#chios  38.370, 26.142
+
+#36.752910, 22.618725
+
+
+
+#Kolpos Kissamou
+#35.532443, 23.658481
+
+#salermo 40.672 , 14.7653
+#ashdod 31.835, 34.642
+
+#kythira
+#36.269870, 23.077812
+
+#chania    
+#start_lat:35.5172
+#start_lon:24.0176
+# For athens to heraklion
+#start_lat: 37.9406
+#start_lon: 23.6333
+#end_lat: 35.3434
+#end_lon: 25.1509
+
+
+#thessoloniki 
+#start_lat: 40.6349
+#start_lon: 22.9230
+
+#her
+#start_lat: 35.3434
+#start_lon: 25.1509
+
+
+## italy to israel
+#start_lat: 40.672
+#start_lon: 14.7653
+#end_lat: 31.835
+#end_lon: 34.642
