@@ -9,52 +9,114 @@ $graph:
 
   id: medslik
 
-  baseCommand: /bin/bash
+  baseCommand:
+    - /opt/miniconda3/envs/application/bin/python
+    - /opt/MEDSLIK/RUN_medslik.py
+
   arguments:
-  - /opt/entrypoint.sh
+  - --use_case_directory
+  - valueFrom: "$(inputs.use_case_directory)"
   - --cont_slick
-  - NO
+  - $(inputs.cont_slick)
   - --sat
-  - NO
+  - $(inputs.sat)
+  - --use_high_res
+  - $(inputs.use_high_res)
+  - --min_lon
+  - $(inputs.min_lon)
+  - --max_lon
+  - $(inputs.max_lon)
+  - --min_lat
+  - $(inputs.min_lat)
+  - --max_lat
+  - $(inputs.max_lat)
   - --lat_point
-  - valueFrom: $( inputs.lat_point )
+  - $(inputs.lat_point)
   - --lon_point
-  - valueFrom: $( inputs.lon_point )
+  - $(inputs.lon_point)
   - --date_spill
-  - valueFrom: $( inputs.date_spill )
+  - $(inputs.date_spill)
   - --spill_dur
-  - valueFrom: $( inputs.spill_dur )
+  - $(inputs.spill_dur)
   - --spill_res
-  - valueFrom: $( inputs.spill_res )
+  - $(inputs.spill_res)
   - --spill_tons
-  - valueFrom: $( inputs.spill_tons )
+  - $(inputs.spill_tons)
   - --username
-  - valueFrom: $( inputs.username )
+  - $(inputs.username)
   - --password
-  - valueFrom: $( inputs.password )
+  - $(inputs.password)
+  - --ftp_server
+  - $(inputs.ftp_server)
+  - --ftp_user
+  - $(inputs.ftp_user)
+  - --ftp_password
+  - $(inputs.ftp_password)
+  - --remote_dir
+  - $(inputs.remote_dir)
+  - --cds_token
+  - $(inputs.cds_token)
 
   inputs:
+    use_case_directory:
+      doc: Path to directory as a string where to find input files and where to store outputs
+      type: string
+    cont_slick:
+      type: string
+      default: "NO"
+    sat:
+      type: string
+      default: "NO"
+    use_high_res:
+      type: string
+      default: "NO"
+    min_lon:
+      type: float?
+      default: 24.069118741783797
+    max_lon:
+      type: float?
+      default: 24.990341065648366
+    min_lat:
+      type: float?
+      default: 35.09663196120557
+    max_lat:
+      type: float?
+      default: 35.990635331961315
     lat_point:
-        type: float
+      type: float?
+      default: 35.496
     lon_point:
-        type: float
+      type: float?
+      default: -15.7433
     date_spill:
-        type: string
+      type: string?
+      default: "2024-11-07T06:22:00Z"
     spill_dur:
-        type: string
+      type: string
     spill_res:
-        type: string
+      type: string
     spill_tons:
-        type: float
+      type: float
+      default: 1.4
     username:
-        type: string
+      type: string
     password:
-        type: string
+      type: string
+    ftp_server:
+      type: string
+    ftp_user:
+      type: string
+    ftp_password:
+      type: string
+    remote_dir:
+      type: string
+    cds_token:
+      type: string?
 
   outputs:
     results:
       outputBinding:
-        glob: MEDSLIK_GLO/OUT/
+        glob: "$(runtime.outdir)/OUT/"
       type: Directory
       doc: All results
 
@@ -64,7 +126,7 @@ $graph:
     ResourceRequirement: {}
     InlineJavascriptRequirement: {}
     DockerRequirement:
-      dockerPull: iliad-repository.inesctec.pt/medslik:0.1.0
+      dockerPull: antonisparasyris/iliad:medslik-1.0
     EnvVarRequirement:
       envDef:
         PATH: /opt/miniconda3/envs/application/bin:/opt/conda/bin:/opt/conda/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
